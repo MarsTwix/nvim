@@ -18,6 +18,18 @@ return {
 		tree.setup({
 			view = {
 				side = "right",
+				number = true,
+				relativenumber = true,
+			},
+			diagnostics = {
+				enable = true,
+				show_on_dirs = true,
+				show_on_open_dirs = false,
+			},
+			actions = {
+				open_file = {
+					quit_on_open = true,
+				},
 			},
 		})
 
