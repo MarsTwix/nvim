@@ -20,6 +20,7 @@ return {
 				side = "right",
 				number = true,
 				relativenumber = true,
+        adaptive_size = true,
 			},
 			diagnostics = {
 				enable = true,
