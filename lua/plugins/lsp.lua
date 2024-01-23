@@ -13,6 +13,11 @@ return {
 					"lua_ls",
 					"tsserver",
 					"elixirls",
+					"yamlls",
+					"jsonls",
+					"html",
+					"cssls",
+          "eslint",
 				},
 			})
 		end,
@@ -31,12 +36,29 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.elixirls.setup({
+        cmd = { "/Users/marnixvalkdigital/elixir-ls/language_server.sh" },
 				capabilities = capabilities,
 			})
+			lspconfig.yamlls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.jsonls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.html.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.cssls.setup({
+				capabilities = capabilities,
+			})
+      lspconfig.eslint.setup({
+        capabilities = capabilities,
+      })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set({ "n", "v" }, "<space>ga", vim.lsp.buf.code_action, {})
-		end,
+			vim.keymap.set({ "n", "v" }, "<leader>ga", vim.lsp.buf.code_action, {})
+      vim.keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float(0, {scope=\"line\"})<CR>", {})
+    end,
 	},
 }
