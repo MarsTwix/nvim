@@ -1,3 +1,5 @@
+local LSPs = require("LSPs")
+
 return {
   {
     "williamboman/mason.nvim",
@@ -9,16 +11,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "tsserver",
-          "elixirls",
-          "yamlls",
-          "jsonls",
-          "html",
-          "cssls",
-          "eslint",
-        },
+        ensure_installed = LSPs,
       })
     end,
   },
@@ -29,31 +22,18 @@ return {
 
       local lspconfig = require("lspconfig")
 
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.tsserver.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.elixirls.setup({
-        cmd = { "$HOME/elixir-ls/language_server.sh" },
-        capabilities = capabilities,
-      })
-      lspconfig.yamlls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.jsonls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.html.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.cssls.setup({
-        capabilities = capabilities,
-      })
-      lspconfig.eslint.setup({
-        capabilities = capabilities,
-      })
+      for _, lsp in ipairs(LSPs) do
+        if lsp == "elixirls" then
+          lspconfig[lsp].setup({
+            cmd = { "$HOME/elixir-ls/language_server.sh" },
+            capabilities = capabilities,
+          })
+        else
+          lspconfig[lsp].setup({
+            capabilities = capabilities,
+          })
+        end
+      end
 
       local function filter(arr, fn)
         if type(arr) ~= "table" then

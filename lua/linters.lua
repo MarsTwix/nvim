@@ -1,0 +1,5 @@
+return {
+  "trivy",
+  "yamllint",
+  "stylelint",
+}
