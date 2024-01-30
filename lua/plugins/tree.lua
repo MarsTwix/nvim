@@ -18,8 +18,6 @@ return {
 		tree.setup({
 			view = {
 				side = "right",
-				number = true,
-				relativenumber = true,
         adaptive_size = true,
 			},
 			diagnostics = {
@@ -32,6 +30,9 @@ return {
 					quit_on_open = true,
 				},
 			},
+      update_focused_file = {
+        enable = true,
+      },
 		})
 
 		vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<CR>", {})
