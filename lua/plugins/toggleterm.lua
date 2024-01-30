@@ -13,6 +13,6 @@ return {
 
 		vim.keymap.set({ "n", "t" }, "<C-i>", [[<C-\><C-n>:ToggleTerm direction=float<CR>]])
 		vim.keymap.set({ "n", "t" }, "<C-h>", [[<C-\><C-n>:ToggleTerm direction=horizontal<CR>]])
-		vim.keymap.set("t", "<esc>", [[<C-\><C-n>:ToggleTerm<CR>]])
+		vim.keymap.set("t", "<esc>", "<esc>")
 	end,
 }
