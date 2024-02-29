@@ -19,6 +19,8 @@ return {
 			view = {
 				side = "right",
         adaptive_size = true,
+        number = true,
+        relativenumber = true,
 			},
 			diagnostics = {
 				enable = true,
@@ -35,6 +37,6 @@ return {
       },
 		})
 
-		vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<CR>", {})
+		vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<CR>", {silent = true})
 	end,
 }
