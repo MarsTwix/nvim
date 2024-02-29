@@ -1,5 +1,4 @@
 return {
-  "trivy",
   "yamllint",
   "stylelint",
 }
