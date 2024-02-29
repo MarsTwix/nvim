@@ -21,13 +21,14 @@ return {
 			},
 		})
 
+    -- This kinda works, but after no buffer it bugs out. Needs research!!
 		local bufferClose = function(force)
 			if force == nil then
 				force = false
 			end
 
 			local count = 0
-			buftypes = vim.api.nvim_list_bufs()
+			local buftypes = vim.api.nvim_list_bufs()
 			for _, bufname in pairs(buftypes) do
 				local buftype = vim.api.nvim_buf_get_option(bufname, "buftype")
 				if vim.api.nvim_buf_is_loaded(bufname) and buftype == "" then
