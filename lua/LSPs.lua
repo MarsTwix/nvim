@@ -7,4 +7,6 @@ return {
   "cssls",
   "eslint",
   "tailwindcss",
+  "ruby_ls",
+  "standardrb",
 }
