@@ -18,4 +18,5 @@ vim.keymap.set("i", "jk", "<ESC>", { noremap = true })
 vim.keymap.set("t", "<TAB>", "<TAB>", { noremap = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.api.nvim_set_keymap('v', 'C', '"*y<CR>', { noremap = true, silent = true }) --This does not work, needs research
+vim.keymap.set("v", "<leader>c", '"*y<CR>', { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>v", '"*p<CR>', { noremap = true, silent = true })
