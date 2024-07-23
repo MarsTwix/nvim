@@ -8,10 +8,9 @@ return {
 
     elixir.setup({
       nextls = { enable = false },
-      credo = { enable = true },
       elixirls = {
         enable = true,
-        tag = "v0.20.0",
+        tag = "v0.22.1",
         settings = elixirls.settings({
           dialyzerEnabled = false,
           enableTestLenses = false,
