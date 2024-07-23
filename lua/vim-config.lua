@@ -20,3 +20,9 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("v", "<leader>c", '"*y<CR>', { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>v", '"*p<CR>', { noremap = true, silent = true })
+
+vim.filetype.add({
+	extension = {
+		jb = "ruby",
+	},
+})
