@@ -14,15 +14,8 @@ vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
 
 vim.o.fillchars = "eob: "
 
-vim.keymap.set("i", "jk", "<ESC>", { noremap = true })
-vim.keymap.set("t", "<TAB>", "<TAB>", { noremap = true })
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("v", "<leader>c", '"*y<CR>', { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>v", '"*p<CR>', { noremap = true, silent = true })
-
 vim.filetype.add({
-	extension = {
-		jb = "ruby",
-	},
+  extension = {
+    jb = "ruby",
+  },
 })
