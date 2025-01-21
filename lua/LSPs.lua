@@ -1,12 +1,12 @@
 return {
   "lua_ls",
-  "tsserver",
+  "ts_ls",
   "yamlls",
   "jsonls",
   "html",
   "cssls",
   "eslint",
   "tailwindcss",
-  "ruby_ls",
+  "ruby_lsp",
   "standardrb",
 }
