@@ -4,7 +4,7 @@ return {
   {
     "williamboman/mason.nvim",
     config = function()
-      require("mason").setup()
+      require("mason").setup({})
     end,
   },
   {
@@ -22,9 +22,21 @@ return {
 
       local lspconfig = require("lspconfig")
       for _, lsp in ipairs(LSPs) do
-        lspconfig[lsp].setup({
-          capabilities = capabilities,
-        })
+        if lsp == "tailwindcss" then
+          lspconfig.tailwindcss.setup({
+            init_options = {
+              userLanguages = {
+                elixir = "html-eex",
+                eelixir = "html-eex",
+                heex = "html-eex",
+              },
+            },
+          })
+        else
+          lspconfig[lsp].setup({
+            capabilities = capabilities,
+          })
+        end
       end
 
       local function filter(arr, fn)
