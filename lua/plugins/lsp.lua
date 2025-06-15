@@ -84,7 +84,7 @@ return {
 			})
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "jdtls" },
+				ensure_installed = { "lua_ls", "jdtls", "lemminx" },
 			})
 		end,
 	},
