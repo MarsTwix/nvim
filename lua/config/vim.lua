@@ -31,3 +31,6 @@ vim.api.nvim_set_hl(0, "LineNr", { fg = "#D3D3D3" })
 -- Make cursor line yellow and remove background
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFEE00" })
 vim.api.nvim_set_hl(0, "CursorLine", { bg = "none" })
+
+vim.opt.spell = true
+vim.opt.spelllang = "en,nl"
