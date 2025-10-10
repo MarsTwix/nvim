@@ -1,4 +1,0 @@
-return {
-  "stylua",
-  "prettierd",
-}
