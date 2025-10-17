@@ -6,6 +6,7 @@ return {
 		lint.linters_by_ft = {
 			lua = { "luacheck" },
 			markdown = { "vale" },
+			ts = { "eslint_d" },
 		}
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 			callback = function()
