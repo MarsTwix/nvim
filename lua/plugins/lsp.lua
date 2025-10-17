@@ -9,24 +9,25 @@ return {
 					local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 					local settings = {}
-                    if server == "lua_ls" then
-                        settings = {
-                            Lua = {
-                                diagnostics = { globals = { "vim" } },
-                                workspace = { checkThirdParty = false },
-                                telemetry = { enable = false },
-                            }
-                        }
-                    end
+					if server == "lua_ls" then
+						settings = {
+							Lua = {
+								diagnostics = { globals = { "vim" } },
+								workspace = { checkThirdParty = false },
+								telemetry = { enable = false },
+							},
+						}
+					end
 
-					lspconfig[server].setup({ 
-						capabilities = capabilities, settings = settings 
+					lspconfig[server].setup({
+						capabilities = capabilities,
+						settings = settings,
 					})
 				end,
 			},
 		},
 		dependencies = {
-			{ "mason-org/mason.nvim", opts = {} },
+			{ "mason-org/mason.nvim", opts = {}, version = "2.0.0" },
 			"neovim/nvim-lspconfig",
 		},
 	},
@@ -37,7 +38,6 @@ return {
 			"mason-org/mason-lspconfig.nvim",
 			"jay-babu/mason-null-ls.nvim",
 		},
-		event = "VeryLazy",
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = { "lua_ls", "stylua", "luacheck", "vale", "prettierd", "eslint_d" },
