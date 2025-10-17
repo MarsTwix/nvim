@@ -6,7 +6,7 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				ts = { "prettierd" },
+				typescript = { "prettierd", "eslint_d" },
 				html = { "prettierd" },
 				scss = { "prettierd" },
 				json = { "prettierd" },
