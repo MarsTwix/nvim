@@ -27,7 +27,7 @@ return {
 			},
 		},
 		dependencies = {
-			{ "mason-org/mason.nvim", opts = {}, version = "2.0.0" },
+			{ "mason-org/mason.nvim", opts = {} },
 			"neovim/nvim-lspconfig",
 		},
 	},
@@ -40,7 +40,7 @@ return {
 		},
 		config = function()
 			require("mason-tool-installer").setup({
-				ensure_installed = { "lua_ls", "stylua", "luacheck", "vale", "prettierd", "eslint_d" },
+				ensure_installed = { "lua_ls", "stylua", "luacheck", "vale", "ts_ls", "prettierd", "eslint_d" },
 			})
 		end,
 	},
