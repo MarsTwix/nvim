@@ -36,3 +36,8 @@ vim.opt.spell = true
 vim.opt.spelllang = "en,nl"
 -- theme
 vim.cmd.colorscheme("catppuccin")
+
+vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true, sp = "#89CFF0" })
+vim.api.nvim_set_hl(0, "SpellCap", { undercurl = true, sp = "#89CFF0" })
+vim.api.nvim_set_hl(0, "SpellLocal", { undercurl = true, sp = "#89CFF0" })
+vim.api.nvim_set_hl(0, "SpellRare", { undercurl = true, sp = "#89CFF0" })
