@@ -7,6 +7,9 @@ return {
 			lua = { "luacheck" },
 			markdown = { "vale" },
 			typescript = { "eslint_d" },
+			html = { "markuplint" },
+			css = { "stylelint" },
+			scss = { "stylelint" },
 		}
 		vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
 			callback = function()

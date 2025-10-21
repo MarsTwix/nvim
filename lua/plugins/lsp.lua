@@ -40,7 +40,25 @@ return {
 		},
 		config = function()
 			require("mason-tool-installer").setup({
-				ensure_installed = { "lua_ls", "stylua", "luacheck", "vale", "ts_ls", "prettierd", "eslint_d" },
+				ensure_installed = {
+					-- Lua
+					"lua_ls",
+					"stylua",
+					"luacheck",
+					-- Markdown
+					"vale",
+					-- Typescript
+					"ts_ls",
+					-- HTML
+					"html",
+					"markuplint",
+					-- CSS, SCSS
+					"cssls",
+					"stylelint",
+					-- Frontend
+					"prettierd",
+					"eslint_d",
+				},
 			})
 		end,
 	},
