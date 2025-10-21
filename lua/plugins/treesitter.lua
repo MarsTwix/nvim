@@ -7,6 +7,6 @@ return {
 		ts = require("nvim-treesitter")
 
 		ts.setup({})
-		ts.install({ "vim" })
+		ts.install({ "vim", "typescript", "html", "css", "scss" })
 	end,
 }
