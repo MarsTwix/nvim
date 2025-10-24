@@ -58,6 +58,9 @@ return {
 					-- Frontend
 					"prettierd",
 					"eslint_d",
+					-- C#
+					"omnisharp",
+					"csharpier",
 				},
 			})
 		end,
