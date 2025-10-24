@@ -3,7 +3,12 @@ return {
 	version = "*",
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
-		require("bufferline").setup({})
+		require("bufferline").setup({
+			options = {
+				diagnostics = "nvim_lsp",
+				separator_style = "slant",
+			},
+		})
 
 		vim.keymap.set("n", "K", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 		vim.keymap.set("n", "J", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
