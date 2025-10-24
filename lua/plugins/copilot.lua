@@ -1,6 +1,5 @@
 return {
 	"zbirenbaum/copilot.lua",
-	build = ":Copilot auth",
 	dependencies = {
 		"copilotlsp-nvim/copilot-lsp",
 		init = function()
