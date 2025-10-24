@@ -1,3 +1,4 @@
+vim.o.termguicolors = true
 vim.o.number = true -- Show line numbers
 vim.o.relativenumber = true -- Show relative line numbers
 vim.o.wrap = false -- Don't wrap lines
@@ -10,7 +11,6 @@ vim.o.hlsearch = true -- Highlight search results
 vim.o.incsearch = true -- Incremental search
 vim.o.ignorecase = true -- Ignore case when searching
 vim.o.smartcase = true -- Unless uppercase is used in the search
-vim.o.termguicolors = true -- True color support
 vim.o.scrolloff = 8 -- Keep 8 lines above/below cursor when scrolling
 vim.o.sidescrolloff = 8 -- Keep 8 columns left/right of cursor when scrolling
 vim.o.mouse = "a" -- Enable mouse support
@@ -35,7 +35,6 @@ vim.o.cursorline = true
 vim.opt.spell = true
 vim.opt.spelllang = "en,nl"
 -- theme
-vim.cmd.colorscheme("catppuccin")
 
 vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true, sp = "#89CFF0" })
 vim.api.nvim_set_hl(0, "SpellCap", { undercurl = true, sp = "#89CFF0" })
