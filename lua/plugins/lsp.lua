@@ -61,6 +61,9 @@ return {
 					-- C#
 					"omnisharp",
 					"csharpier",
+					-- Python
+					"pyright",
+					"black",
 				},
 			})
 		end,
