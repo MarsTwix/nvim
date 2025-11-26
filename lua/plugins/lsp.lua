@@ -64,6 +64,8 @@ return {
 					-- Python
 					"pyright",
 					"black",
+					-- Angular
+					"angularls",
 				},
 			})
 		end,

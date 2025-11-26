@@ -8,6 +8,7 @@ return {
 				lua = { "stylua" },
 				typescript = { "prettierd", "eslint_d" },
 				html = { "prettierd" },
+				htmlangular = { "prettierd" },
 				css = { "prettierd" },
 				scss = { "prettierd" },
 				json = { "prettierd" },

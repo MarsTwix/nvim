@@ -8,6 +8,7 @@ return {
 			markdown = { "vale" },
 			typescript = { "eslint_d" },
 			html = { "markuplint" },
+			htmlangular = { "markuplint" },
 			css = { "stylelint" },
 			scss = { "stylelint" },
 		}
