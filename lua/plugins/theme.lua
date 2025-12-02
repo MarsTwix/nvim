@@ -1,10 +1,9 @@
 return {
-	"catppuccin/nvim",
-	name = "catppuccin",
+	"ellisonleao/gruvbox.nvim",
 	priority = 1000,
 	lazy = false, -- Colorschemes should load early
 	config = function()
-		require("catppuccin").setup({})
-		vim.cmd.colorscheme("catppuccin")
+		require("gruvbox").setup({})
+		vim.cmd.colorscheme("gruvbox")
 	end,
 }
