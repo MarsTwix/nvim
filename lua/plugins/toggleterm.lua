@@ -27,7 +27,7 @@ return {
 	},
 	keys = {
 		{
-			"<leader>tc",
+			"<leader>tt",
 			function()
 				local Terminal = require("toggleterm.terminal").Terminal
 				if not codex_term then
@@ -39,7 +39,7 @@ return {
 				end
 				codex_term:toggle()
 			end,
-			desc = "Codex terminal (left)",
+			desc = "Terminal (Codex, left)",
 		},
 	},
 }
