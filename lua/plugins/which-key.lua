@@ -12,25 +12,13 @@ return {
 			{ "<leader>e", group = "explorer" },
 			{ "<leader>f", group = "find" },
 			{ "<leader>g", group = "git" },
+			{ "<leader>o", group = "opencode" },
 			{ "<leader>r", group = "rename" },
 			{ "<leader>t", group = "toggle" },
 			{ "<leader>x", group = "diagnostics" },
 		}
 
-		if wk.add then
-			wk.add(groups)
-		else
-			wk.register({
-				b = { name = "buffer" },
-				c = { name = "code" },
-				e = { name = "explorer" },
-				f = { name = "find" },
-				g = { name = "git" },
-				r = { name = "rename" },
-				t = { name = "toggle" },
-				x = { name = "diagnostics" },
-			}, { prefix = "<leader>" })
-		end
+		wk.add(groups)
 	end,
 	keys = {
 		{

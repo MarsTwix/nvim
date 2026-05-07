@@ -1,12 +1,15 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	lazy = false,
-	branch = "main",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
-		ts = require("nvim-treesitter")
+		require("nvim-treesitter").setup()
 
-		ts.setup({})
-		ts.install({ "vim", "typescript", "html", "css", "scss", "c_sharp", "angular" })
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = { "vim", "lua", "typescript", "html", "css", "scss", "cs", "csharp", "htmlangular" },
+			callback = function(args)
+				pcall(vim.treesitter.start, args.buf)
+			end,
+		})
 	end,
 }

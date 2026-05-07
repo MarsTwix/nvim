@@ -12,6 +12,16 @@ return {
 			local cmp = require("cmp")
 
 			cmp.setup({
+				enabled = function()
+					if vim.bo.filetype == "opencode_ask" then
+						return true
+					end
+
+					return vim.bo.buftype ~= "prompt"
+				end,
+				completion = {
+					autocomplete = { cmp.TriggerEvent.TextChanged },
+				},
 				mapping = cmp.mapping.preset.insert({
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),

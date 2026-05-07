@@ -1,0 +1,162 @@
+return {
+	"nickjvandyke/opencode.nvim",
+	version = "*", -- Latest stable release
+	dependencies = {
+		{
+			-- `snacks.nvim` integration is recommended, but optional
+			---@module "snacks" <- Loads `snacks.nvim` types for configuration intellisense
+			"folke/snacks.nvim",
+			opts = {
+				input = {}, -- Enhances `ask()`
+				picker = { -- Enhances `select()`
+					actions = {
+						opencode_send = function(...)
+							return require("opencode").snacks_picker_send(...)
+						end,
+					},
+					win = {
+						input = {
+							keys = {
+								["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+							},
+						},
+					},
+				},
+			},
+		},
+	},
+	config = function()
+		local Terminal = require("toggleterm.terminal").Terminal
+		local opencode = require("opencode")
+		local opencode_command = require("opencode.api.command").command
+		local opencode_context = require("opencode.context")
+		local opencode_prompt = require("opencode.api.prompt").prompt
+		local opencode_ui_ask = require("opencode.ui.ask").ask
+		local map = vim.keymap.set
+
+		local function notify_opencode_error(err)
+			if err then
+				vim.notify(err, vim.log.levels.ERROR, { title = "opencode" })
+			end
+		end
+
+		local function ask_prompt()
+			local mode = vim.fn.mode(1):sub(1, 1)
+			if mode == "v" or mode == "V" or mode == "\22" then
+				return "@this: "
+			end
+
+			return ""
+		end
+
+		local opencode_term = Terminal:new({
+			cmd = "opencode --port",
+			direction = "vertical",
+			hidden = true,
+			close_on_exit = false,
+				on_open = function(term)
+					pcall(vim.keymap.del, "t", "<C-\\>", { buffer = term.bufnr })
+					map("t", "<C-]>", [[<C-\><C-n>]], { buffer = term.bufnr, desc = "Exit terminal mode" })
+					vim.schedule(function()
+						if term.window and vim.api.nvim_win_is_valid(term.window) then
+							vim.wo[term.window].spell = false
+							term:focus()
+							vim.cmd.startinsert()
+						end
+					end)
+				end,
+		})
+
+		local function focus_opencode_panel()
+			if not opencode_term:is_open() then
+				return false
+			end
+
+			opencode_term:focus()
+			vim.cmd.startinsert()
+			return true
+		end
+
+		local function show_opencode_panel()
+			if not focus_opencode_panel() then
+				opencode_term:open()
+			end
+		end
+
+		local function ask_current_session()
+			local context = opencode_context.new()
+			return opencode_ui_ask(ask_prompt(), context)
+				:next(function(input)
+					context:clear()
+					return opencode_prompt(input, {
+						context = context,
+						submit = input:sub(-1) ~= " ",
+					})
+				end)
+				:next(function(result)
+					show_opencode_panel()
+					return result
+				end)
+		end
+
+		local function run_in_session(action, opts)
+			local request = opts and opts.new_session and opencode_command("session.new"):next(action) or action()
+			return request:catch(notify_opencode_error)
+		end
+
+		---@type opencode.Opts
+		vim.g.opencode_opts = {
+			server = {
+				start = function()
+					opencode_term:spawn()
+				end,
+				stop = function()
+					opencode_term:shutdown()
+				end,
+				toggle = function()
+					opencode_term:toggle()
+					if opencode_term:is_open() then
+						vim.schedule(focus_opencode_panel)
+					end
+				end,
+			},
+		}
+
+		vim.o.autoread = true -- Required for `opts.events.reload`
+
+		map({ "n", "x" }, "<leader>oa", function()
+			run_in_session(ask_current_session)
+		end, { desc = "Ask opencode" })
+		map({ "n", "x" }, "<leader>oA", function()
+			run_in_session(ask_current_session, { new_session = true })
+		end, { desc = "Ask opencode in new session" })
+		map({ "n", "x" }, "<leader>ox", opencode.select, { desc = "Opencode actions" })
+		map("n", "<leader>oo", opencode.toggle, { desc = "Toggle opencode" })
+		map("n", "<leader>on", function()
+			opencode_command("session.new")
+				:next(function()
+					show_opencode_panel()
+				end)
+				:catch(notify_opencode_error)
+		end, { desc = "New opencode session" })
+		map("n", "<leader>os", function()
+			opencode.select_session():next(function()
+				show_opencode_panel()
+			end)
+		end, { desc = "Switch opencode session" })
+
+		map({ "n", "x" }, "go", function()
+			return opencode.operator("@this ")
+		end, { desc = "Add range to opencode", expr = true })
+		map("n", "goo", function()
+			return opencode.operator("@this ") .. "_"
+		end, { desc = "Add line to opencode", expr = true })
+
+		map("n", "<S-C-u>", function()
+			opencode.command("session.half.page.up")
+		end, { desc = "Scroll opencode up" })
+		map("n", "<S-C-d>", function()
+			opencode.command("session.half.page.down")
+		end, { desc = "Scroll opencode down" })
+	end,
+}

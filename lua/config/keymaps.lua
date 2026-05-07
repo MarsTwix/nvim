@@ -4,7 +4,6 @@ local function with_desc(desc)
 	return vim.tbl_extend("force", opts, { desc = desc })
 end
 
-vim.keymap.set("n", "K", vim.lsp.buf.hover, with_desc("LSP hover"))
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, with_desc("LSP definition"))
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, with_desc("LSP declaration"))
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, with_desc("LSP implementation"))
